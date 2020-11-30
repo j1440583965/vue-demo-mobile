@@ -22,7 +22,7 @@ const showToast = msg => {
      * @param {*} headers 请求头 非必填
      * @param {*} msg toast提示信息 非必填 
      */
-export default function getJson({ url, method, data, headers, msg }) {
+export default function http({ url, method, data, headers, msg }) {
     msg ? showToast(msg) : showToast('请求中,请稍候')
         // application/x-www-form-urlencoded  默认格式
         // application/json;charset=UTF-8  

@@ -4,7 +4,7 @@ import { Toast } from 'vant'
 import api from './api'
 Vue.use(Toast)
 axios.defaults.timeout = 15 * 1000;
-axios.defaults.baseURL = api.baseUrl
+// axios.defaults.baseURL = api.baseUrl
 const showToast = msg => {
         Toast.loading({
             duration: 0, // 持续展示 toast
@@ -13,7 +13,7 @@ const showToast = msg => {
         });
     }
     /**
-     * @param {string} url api的key值
+     * @param {string} url api的key值 当多域名时直接传于完整链接
      * @param {object} data 请求参数 get与post写法一致
      * @param {string} msg toast提示信息 非必填 
      * @param {string} method 请求方法 get post 默认post非必填
@@ -24,7 +24,13 @@ export default function http({ url, data, msg, method = 'post', headers = "appli
         // application/x-www-form-urlencoded  默认格式
         // application/json;charset=UTF-8  
     return new Promise((resolve, reject) => {
-        var httpUrl = api[url]
+        var httpUrl
+            // 接口多域名处理
+        if (!url.includes('http')) {
+            httpUrl = api.baseUrl + api[url]
+        } else {
+            httpUrl = api[url]
+        }
         if (method === 'get') {
             httpUrl += '?'
             for (var key in data) {

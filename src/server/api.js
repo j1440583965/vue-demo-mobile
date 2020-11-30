@@ -1,14 +1,8 @@
-var baseUrl;
+import http from './http'
 
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:3000'
-} else if (process.env.NODE_ENV === 'devtest') {
-    baseUrl = ''
-} else {
-    baseUrl = ''
+export function test(data) {
+    return http({ url: "test", method: "get", data })
 }
-export default {
-    baseUrl: baseUrl,
-    test: '/xiaochengxu',
-    login: '/xiaochengxu/login'
+export function login(data) {
+    return http({ url: "login", data })
 }

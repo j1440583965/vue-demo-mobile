@@ -1,8 +1,9 @@
 import axios from 'axios'
 import Vue from 'vue'
 import { Toast } from 'vant'
-import api from './api'
+import api from './ipConfig'
 Vue.use(Toast)
+    //请求时长15秒
 axios.defaults.timeout = 15 * 1000;
 // axios.defaults.baseURL = api.baseUrl
 const showToast = msg => {
@@ -40,6 +41,7 @@ export default function http({ url, data, msg = '请求中,请稍候', method = 
             }
         }
         axios({
+                //根据需求是否需要传递token 一般无需删除 后端不接收即可
                 headers: { "Content-Type": headers, 'authorization': sessionStorage.getItem('token') },
                 url: httpUrl,
                 method,

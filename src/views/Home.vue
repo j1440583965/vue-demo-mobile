@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {test,login} from '../server/api'
 export default {
   mounted() {
     
@@ -14,8 +15,7 @@ export default {
     // get请求示例
     async init() {
       try {
-        const params = { url: "test", method: "get", data: { name: "lisa" } };
-        const res = await this.$http(params);
+        const res = await test({ name: "lisa" });
         console.log(res);
       } catch (error) {
         console.log(error)
@@ -24,9 +24,7 @@ export default {
     //post请求示例
     async getUserInfo() {
        try {
-         //默认post
-        const params = { url: "login", data: { username: "lisa" }};
-        const res = await this.$http(params);
+        const res = await login({ username: "lisa" });
         console.log('token',res);
         sessionStorage.setItem('token',res.token)
         this.init();

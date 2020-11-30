@@ -3,13 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import md5 from './utils/md5'
-import http from './server/http'
+// import http from './server/http'
 import api from './server/api'
 import Vconsole from 'vconsole'
 import './utils/rem'
 import { encodeStorage, decodeStorage } from '@/utils/encryptData.js'
 import { Decrypt, Encrypt } from '@/utils/crypto.js'
-Vue.prototype.$http = http
+// Vue.prototype.$http = http
 Vue.prototype.$api = api
 Vue.prototype.$encodeStorage = encodeStorage
 Vue.prototype.$decodeStorage = decodeStorage

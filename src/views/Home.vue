@@ -24,7 +24,8 @@ export default {
     //post请求示例
     async getUserInfo() {
        try {
-        const params = { url: "login", method: "post", data: { username: "lisa" } };
+         //默认post
+        const params = { url: "login", data: { username: "lisa" } };
         const res = await this.$http(params);
         console.log('token',res);
       } catch (error) {

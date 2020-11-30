@@ -9,7 +9,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 export default {
     baseUrl: baseUrl,
-    //我创建的
     test: '/xiaochengxu',
     login: '/xiaochengxu/login'
 }

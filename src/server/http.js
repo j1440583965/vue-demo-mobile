@@ -3,10 +3,8 @@ import Vue from 'vue'
 import { Toast } from 'vant'
 import api from './api'
 Vue.use(Toast)
-
 axios.defaults.timeout = 15 * 1000;
 axios.defaults.baseURL = api.baseUrl
-
 const showToast = msg => {
         Toast.loading({
             duration: 0, // 持续展示 toast
@@ -22,7 +20,7 @@ const showToast = msg => {
      * @param {*} headers 请求头 非必填
      * @param {*} msg toast提示信息 非必填 
      */
-export default function http({ url, method, data, headers, msg }) {
+export default function http({ url, data, msg, method = 'post', headers = "application/x-www-form-urlencoded" }) {
     msg ? showToast(msg) : showToast('请求中,请稍候')
         // application/x-www-form-urlencoded  默认格式
         // application/json;charset=UTF-8  
@@ -38,7 +36,7 @@ export default function http({ url, method, data, headers, msg }) {
         }
 
         axios({
-                headers: headers ? { "Content-Type": headers } : { "Content-Type": "application/x-www-form-urlencoded" },
+                headers: { "Content-Type": headers },
                 url: httpUrl,
                 method,
                 data: method === 'get' ? {} : data
@@ -46,7 +44,6 @@ export default function http({ url, method, data, headers, msg }) {
                 Toast.clear();
                 if (res.data.code === 0) {
                     resolve(res.data.data)
-
                 } else {
                     Toast.fail(res.data.msg || '请求错误！');
 

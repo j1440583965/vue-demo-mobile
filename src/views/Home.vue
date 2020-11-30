@@ -7,7 +7,7 @@
 <script>
 export default {
   mounted() {
-    this.init();
+    
     this.getUserInfo();
   },
   methods: {
@@ -25,9 +25,11 @@ export default {
     async getUserInfo() {
        try {
          //默认post
-        const params = { url: "login", data: { username: "lisa" } };
+        const params = { url: "login", data: { username: "lisa" }};
         const res = await this.$http(params);
         console.log('token',res);
+        sessionStorage.setItem('token',res.token)
+        this.init();
       } catch (error) {
         console.log(error)
       }

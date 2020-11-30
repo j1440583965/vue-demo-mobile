@@ -15,14 +15,16 @@ const showToast = msg => {
     /**
      * @param {string} url api的key值 当多域名时直接传于完整链接
      * @param {object} data 请求参数 get与post写法一致
-     * @param {string} msg toast提示信息 非必填 
+     * @param {string} msg toast提示信息 非必填  传入false时不显示
      * @param {string} method 请求方法 get post 默认post非必填
      * @param {string} headers 请求头 非必填
      */
-export default function http({ url, data, msg, method = 'post', headers = "application/x-www-form-urlencoded" }) {
-    msg ? showToast(msg) : showToast('请求中,请稍候')
-        // application/x-www-form-urlencoded  默认格式
-        // application/json;charset=UTF-8  
+export default function http({ url, data, msg = '请求中,请稍候', method = 'post', headers = "application/x-www-form-urlencoded" }) {
+    if (msg !== false) {
+        showToast(msg)
+    }
+    // application/x-www-form-urlencoded  默认格式
+    // application/json;charset=UTF-8  
     return new Promise((resolve, reject) => {
         var httpUrl
             // 接口多域名处理
@@ -38,10 +40,10 @@ export default function http({ url, data, msg, method = 'post', headers = "appli
             }
         }
         axios({
-                headers: { "Content-Type": headers },
+                headers: { "Content-Type": headers, 'authorization': sessionStorage.getItem('token') },
                 url: httpUrl,
                 method,
-                data: method === 'get' ? {} : data
+                data
             }).then(res => {
                 Toast.clear();
                 // 根据实际后端返回去判断

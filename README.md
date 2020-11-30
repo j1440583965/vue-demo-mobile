@@ -1,4 +1,4 @@
-# smhk
+# peoject-name
 
 ## Project setup
 ```
@@ -9,7 +9,10 @@ npm install
 ```
 npm run serve
 ```
-
+### Compiles and hot-reloads for devtest
+```
+npm run test
+```
 ### Compiles and minifies for production
 ```
 npm run build

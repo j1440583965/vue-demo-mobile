@@ -1,16 +1,19 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import md5 from './utils/md5'
-// import http from './server/http'
-import api from './server/api'
+import App from '@/App.vue'
+import router from '@/router'
+import store from '@/store'
+import md5 from '@/utils/md5'
+import ipconfig from '@/server/ipConfig'
+//移动端调试工具
 import Vconsole from 'vconsole'
-import './utils/rem'
+// rem 
+import '@/utils/rem'
+// localstorage数据加密   根据公司业务需求是否需要 
 import { encodeStorage, decodeStorage } from '@/utils/encryptData.js'
+// AES加密 解密   根据公司业务需求是否需要 
 import { Decrypt, Encrypt } from '@/utils/crypto.js'
-// Vue.prototype.$http = http
-Vue.prototype.$api = api
+// 自动导入公共组件
+import '@/components/public/index'
 Vue.prototype.$encodeStorage = encodeStorage
 Vue.prototype.$decodeStorage = decodeStorage
 let vConsole = null
@@ -23,8 +26,8 @@ export default vConsole
 Vue.prototype.$Decrypt = Decrypt
     //加密
 Vue.prototype.$Encrypt = Encrypt
-
-Vue.prototype.$md5 = md5
+    // 与后端共同决定加密方式 返回加密完的字符串
+Vue.prototype.$md5 = str => md5(ipconfig.salt + str).toUpperCase()
 Vue.config.productionTip = false
 new Vue({
     router,

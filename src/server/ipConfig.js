@@ -9,6 +9,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 export default {
     baseUrl: baseUrl,
+    salt: '加密盐',
     test: '/xiaochengxu',
-    login: '/xiaochengxu/login'
+    login: '/xiaochengxu/login',
+    upload: '/upload'
 }

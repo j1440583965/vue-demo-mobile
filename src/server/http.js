@@ -5,6 +5,7 @@ import api from './ipConfig'
 Vue.use(Toast)
     //请求时长15秒
 axios.defaults.timeout = 15 * 1000;
+// 多个请求地址时不适用
 // axios.defaults.baseURL = api.baseUrl
 const showToast = msg => {
         Toast.loading({
@@ -16,7 +17,7 @@ const showToast = msg => {
     /**
      * @param {string} url api的key值 当多域名时直接传于完整链接
      * @param {object} data 请求参数 get与post写法一致
-     * @param {string} msg toast提示信息 非必填  传入false时不显示
+     * @param {string} msg toast提示信息 传入false时不显示 默认请求中,请稍候 非必填   
      * @param {string} method 请求方法 get post 默认post非必填
      * @param {string} headers 请求头 非必填
      */

@@ -8,7 +8,7 @@ const routes = [{
     path: '/',
     name: 'Home',
     meta: {
-        title: 'home'
+        title: '首页'
     },
     component: Home
         // () =>
@@ -21,8 +21,6 @@ const router = new VueRouter({
     routes
 })
 router.beforeEach((to, from, next) => {
-
-
     to.meta.title && (document.title = to.meta.title);
     next()
 });
